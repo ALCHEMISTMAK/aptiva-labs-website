@@ -65,8 +65,11 @@ const DNAIcon = ({ size = 48, color = "#2a9aaa" }) => (
   </svg>
 );
 
+let vialCounter = 0;
+
 const VialSVG = ({ product }) => {
   const [hovered, setHovered] = useState(false);
+  const uid = useRef(`v${++vialCounter}`).current;
   return (
     <div
       onMouseEnter={() => setHovered(true)}
@@ -79,15 +82,15 @@ const VialSVG = ({ product }) => {
     >
       <svg width="130" height="185" viewBox="0 0 160 220" fill="none">
         {/* Cap */}
-        <rect x="52" y="8" width="56" height="28" rx="4" fill="url(#capGrad)" />
+        <rect x="52" y="8" width="56" height="28" rx="4" fill={`url(#${uid}capGrad)`} />
         <rect x="54" y="10" width="52" height="6" rx="2" fill="#d0d0d0" opacity="0.5" />
         <ellipse cx="80" cy="8" rx="28" ry="4" fill="#c8c8c8" />
         {/* Neck */}
-        <rect x="58" y="36" width="44" height="16" fill="url(#glassNeck)" />
+        <rect x="58" y="36" width="44" height="16" fill={`url(#${uid}glassNeck)`} />
         {/* Crimp ring */}
-        <rect x="50" y="50" width="60" height="6" rx="2" fill="url(#crimpGrad)" />
+        <rect x="50" y="50" width="60" height="6" rx="2" fill={`url(#${uid}crimpGrad)`} />
         {/* Body */}
-        <rect x="38" y="56" width="84" height="120" rx="6" fill="url(#glassBody)" />
+        <rect x="38" y="56" width="84" height="120" rx="6" fill={`url(#${uid}glassBody)`} />
         {/* Glass shine left */}
         <rect x="42" y="60" width="8" height="110" rx="4" fill="white" opacity="0.28" />
         {/* Glass shine right subtle */}
@@ -113,29 +116,29 @@ const VialSVG = ({ product }) => {
         <rect x="44" y="148" width="72" height="14" rx="0" fill={product.color} />
         <text x="80" y="158" textAnchor="middle" fill="white" fontSize="5" fontWeight="600" fontFamily="'DM Sans', sans-serif" letterSpacing="0.3">{`<${product.purity} PURITY | HPLC VERIFIED`}</text>
         {/* Bottom of vial */}
-        <ellipse cx="80" cy="176" rx="42" ry="6" fill="url(#bottomGrad)" />
+        <ellipse cx="80" cy="176" rx="42" ry="6" fill={`url(#${uid}bottomGrad)`} />
         <defs>
-          <linearGradient id="capGrad" x1="52" y1="8" x2="108" y2="36">
+          <linearGradient id={`${uid}capGrad`} x1="52" y1="8" x2="108" y2="36">
             <stop offset="0%" stopColor="#b8b8b8" />
             <stop offset="50%" stopColor="#d8d8d8" />
             <stop offset="100%" stopColor="#a8a8a8" />
           </linearGradient>
-          <linearGradient id="crimpGrad" x1="50" y1="50" x2="110" y2="56">
+          <linearGradient id={`${uid}crimpGrad`} x1="50" y1="50" x2="110" y2="56">
             <stop offset="0%" stopColor="#c0c0c0" />
             <stop offset="50%" stopColor="#e0e0e0" />
             <stop offset="100%" stopColor="#b0b0b0" />
           </linearGradient>
-          <linearGradient id="glassNeck" x1="58" y1="36" x2="102" y2="52">
+          <linearGradient id={`${uid}glassNeck`} x1="58" y1="36" x2="102" y2="52">
             <stop offset="0%" stopColor="#e8f0f4" />
             <stop offset="100%" stopColor="#f4f8fa" />
           </linearGradient>
-          <linearGradient id="glassBody" x1="38" y1="56" x2="122" y2="176">
+          <linearGradient id={`${uid}glassBody`} x1="38" y1="56" x2="122" y2="176">
             <stop offset="0%" stopColor="#eaf2f6" />
             <stop offset="30%" stopColor="#f6fafe" />
             <stop offset="70%" stopColor="#f0f6fa" />
             <stop offset="100%" stopColor="#e4eef4" />
           </linearGradient>
-          <linearGradient id="bottomGrad" x1="38" y1="170" x2="122" y2="182">
+          <linearGradient id={`${uid}bottomGrad`} x1="38" y1="170" x2="122" y2="182">
             <stop offset="0%" stopColor="#d0dce4" />
             <stop offset="50%" stopColor="#e0eaf0" />
             <stop offset="100%" stopColor="#c8d8e0" />
